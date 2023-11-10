@@ -1,0 +1,7 @@
+<div *ngIf="form" [formGroup]="form" (ngSubmit)="save()">
+  <input formControlName="userName" placeholder="User Name" />
+  <input formControlName="userId" placeholder="User ID" />
+  <input type="file" (change)="onFileChange($event)" />
+  <!-- <button (click)="uploadFile()">Upload File</button> -->
+</div>
+<button type="submit"></button>

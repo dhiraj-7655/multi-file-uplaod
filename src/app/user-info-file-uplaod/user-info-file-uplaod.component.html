@@ -1,0 +1,13 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div *ngFor="let user of users; let i = index" [formGroupName]="i">
+      <input formControlName="user_name" type="text" placeholder="User Name" />
+      <input formControlName="user_id" type="text" placeholder="User ID" />
+      <input
+        formControlName="user_document"
+        type="file"
+        (change)="onFileChange(i, $event)"
+      />
+    </div>
+    <button type="button" (click)="addUserField()">Add User</button>
+    <button type="submit">Submit {{users.length}}</button>
+</form>

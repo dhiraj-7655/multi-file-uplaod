@@ -1,0 +1,23 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <div formArrayName="users">
+    <div
+      *ngFor="let userGroup of userForm.get('users')?.controls; let i = index"
+      [formGroupName]="i"
+    >
+      <label for="user_name">User Name:</label>
+      <input type="text" formControlName="user_name" />
+
+      <label for="user_id">User ID:</label>
+      <input type="text" formControlName="user_id" />
+
+      <label for="user_document">User Document:</label>
+      <input type="file" (change)="onFileSelected($event, i)" />
+
+      <button (click)="removeUser(i)">Remove</button>
+    </div>
+  </div>
+
+  <button (click)="addUser()">Add User</button>
+
+  <button type="submit">Submit</button>
+</form>
