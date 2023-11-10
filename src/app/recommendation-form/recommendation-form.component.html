@@ -1,0 +1,24 @@
+<form #recommendationForm="ngForm">
+    <div *ngFor="let recommendation of recommendations; let i = index">
+      <label for="recommendationTitle">Recommendation Title:</label>
+      <input type="text" id="recommendationTitle" name="recommendationTitle{{i}}" [(ngModel)]="recommendation.title" required>
+  
+      <label for="recommendationId">Recommendation ID:</label>
+      <input type="text" id="recommendationId" name="recommendationId{{i}}" [(ngModel)]="recommendation.id" required>
+  
+      <label for="recommendationDesc">Recommendation Description:</label>
+      <textarea id="recommendationDesc" name="recommendationDesc{{i}}" [(ngModel)]="recommendation.description" required></textarea>
+  
+      <label for="recommendationFile">Recommendation File:</label>
+      <input type="file" id="recommendationFile" name="recommendationFile{{i}}" (change)="onFileChange($event, i)" required>
+  
+      <!-- Add a button to remove the recommendation -->
+      <button type="button" (click)="removeRecommendation(i)">Remove</button>
+    </div>
+  
+    <!-- Button to add a new recommendation -->
+    <button type="button" (click)="addRecommendation()">Add Recommendation</button>
+  
+    <!-- Button to save and submit the form -->
+    <button type="button" (click)="saveRecommendations()">Save Recommendations</button>
+  </form>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FileUploadService } from '../file-upload.service';
 
 @Component({
   selector: 'app-user-info-file-uplaod',
@@ -9,9 +10,10 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 export class UserInfoFileUplaodComponent implements OnInit {
 
   userForm: FormGroup;
-  users: FormArray = new FormArray([]);
+  // users: FormArray = new FormArray([]);
+  users: any=[];
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,private fileUploadService: FileUploadService) {
     this.userForm = this.formBuilder.group({
       users: this.users
     });
@@ -42,13 +44,27 @@ export class UserInfoFileUplaodComponent implements OnInit {
   onSubmit() {
     if (this.userForm.valid) {
       const formData = new FormData();
-      this.users.value.forEach((user: any) => {
-        formData.append('user_name', user.user_name);
-        formData.append('user_id', user.user_id);
-        formData.append('user_document', user.user_document);
+      this.users.forEach((user: any) => {
+        formData.append('user_name', user.value.user_name);
+        formData.append('user_id', user.value.user_id);
+        formData.append('user_document', user.value.user_document);
       })
       console.log(formData);
+    this.uploadFile(formData);
+
     }
   }
+  uploadFile(formData:any) {
+    this.fileUploadService.uploadFile(formData).subscribe(
+      (response) => {
+        // Handle the response from the server
+        console.log('File uploaded successfully', response);
+      },
+      (error) => {
+        // Handle any errors
+        console.error('File upload error', error);
+      }
+    );
+}
 
 }

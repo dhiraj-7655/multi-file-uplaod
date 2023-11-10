@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { UserInfoFileUplaodComponent } from './user-info-file-uplaod/user-info-file-uplaod.component';
 import { FileReactiveComponent } from './file-reactive/file-reactive.component';
+import { RecommendationFormComponent } from './recommendation-form/recommendation-form.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FileReactiveComponent } from './file-reactive/file-reactive.component';
     FileUploadComponent,
     UserInfoComponent,
     UserInfoFileUplaodComponent,
-    FileReactiveComponent
+    FileReactiveComponent,
+    RecommendationFormComponent
   ],
   imports: [
     BrowserModule,
